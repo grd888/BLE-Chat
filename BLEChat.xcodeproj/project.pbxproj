@@ -13,6 +13,7 @@
 		5D4FFBC32A861D9100D04E9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D4FFBC22A861D9100D04E9A /* Assets.xcassets */; };
 		5D4FFBC62A861D9100D04E9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D4FFBC42A861D9100D04E9A /* LaunchScreen.storyboard */; };
 		5D4FFBD12A861D9100D04E9A /* BLEChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFBD02A861D9100D04E9A /* BLEChatTests.swift */; };
+		5D4FFBEE2A862C7E00D04E9A /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFBED2A862C7E00D04E9A /* BluetoothService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		5D4FFBCC2A861D9100D04E9A /* BLEChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BLEChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D4FFBD02A861D9100D04E9A /* BLEChatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEChatTests.swift; sourceTree = "<group>"; };
 		5D4FFBEA2A862A4100D04E9A /* UnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTests.xctestplan; sourceTree = "<group>"; };
+		5D4FFBED2A862C7E00D04E9A /* BluetoothService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 		5D4FFBB82A861D8E00D04E9A /* BLEChat */ = {
 			isa = PBXGroup;
 			children = (
+				5D4FFBEC2A862C7400D04E9A /* Services */,
 				5D4FFBE92A86277D00D04E9A /* Resources */,
 				5D4FFBB92A861D8E00D04E9A /* AppDelegate.swift */,
 				5D4FFBBB2A861D8E00D04E9A /* SceneDelegate.swift */,
@@ -110,6 +113,14 @@
 				5D4FFBEA2A862A4100D04E9A /* UnitTests.xctestplan */,
 			);
 			path = "Test Plans";
+			sourceTree = "<group>";
+		};
+		5D4FFBEC2A862C7400D04E9A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				5D4FFBED2A862C7E00D04E9A /* BluetoothService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +226,7 @@
 				5D4FFBBE2A861D8E00D04E9A /* HomeViewController.swift in Sources */,
 				5D4FFBBA2A861D8E00D04E9A /* AppDelegate.swift in Sources */,
 				5D4FFBBC2A861D8E00D04E9A /* SceneDelegate.swift in Sources */,
+				5D4FFBEE2A862C7E00D04E9A /* BluetoothService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,8 +384,9 @@
 				DEVELOPMENT_TEAM = CZHT3BTCGY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BLEChat/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "A Bluetooth connection is required to chat with other users.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -399,8 +412,9 @@
 				DEVELOPMENT_TEAM = CZHT3BTCGY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BLEChat/Info.plist;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "A Bluetooth connection is required to chat with other users.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
