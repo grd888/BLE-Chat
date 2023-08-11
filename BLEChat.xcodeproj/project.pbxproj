@@ -14,6 +14,7 @@
 		5D4FFBC62A861D9100D04E9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5D4FFBC42A861D9100D04E9A /* LaunchScreen.storyboard */; };
 		5D4FFBD12A861D9100D04E9A /* BLEChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFBD02A861D9100D04E9A /* BLEChatTests.swift */; };
 		5D4FFBEE2A862C7E00D04E9A /* BluetoothService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFBED2A862C7E00D04E9A /* BluetoothService.swift */; };
+		5D4FFBF02A866FFD00D04E9A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFBEF2A866FFD00D04E9A /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		5D4FFBD02A861D9100D04E9A /* BLEChatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEChatTests.swift; sourceTree = "<group>"; };
 		5D4FFBEA2A862A4100D04E9A /* UnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UnitTests.xctestplan; sourceTree = "<group>"; };
 		5D4FFBED2A862C7E00D04E9A /* BluetoothService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothService.swift; sourceTree = "<group>"; };
+		5D4FFBEF2A866FFD00D04E9A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		5D4FFBB82A861D8E00D04E9A /* BLEChat */ = {
 			isa = PBXGroup;
 			children = (
+				5D4FFBF12A8746C600D04E9A /* Models */,
 				5D4FFBEC2A862C7400D04E9A /* Services */,
 				5D4FFBE92A86277D00D04E9A /* Resources */,
 				5D4FFBB92A861D8E00D04E9A /* AppDelegate.swift */,
@@ -119,8 +122,16 @@
 			isa = PBXGroup;
 			children = (
 				5D4FFBED2A862C7E00D04E9A /* BluetoothService.swift */,
+				5D4FFBEF2A866FFD00D04E9A /* Constants.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		5D4FFBF12A8746C600D04E9A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D4FFBF02A866FFD00D04E9A /* Constants.swift in Sources */,
 				5D4FFBBE2A861D8E00D04E9A /* HomeViewController.swift in Sources */,
 				5D4FFBBA2A861D8E00D04E9A /* AppDelegate.swift in Sources */,
 				5D4FFBBC2A861D8E00D04E9A /* SceneDelegate.swift in Sources */,

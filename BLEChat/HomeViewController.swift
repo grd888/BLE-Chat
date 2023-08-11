@@ -9,13 +9,13 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    var chatService: BluetoothService!
+    var discoverService: BluetoothService!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .cyan
-        chatService = BluetoothService()
-        chatService.errorNotifier = { [unowned self] error in
+        discoverService = BluetoothService()
+        discoverService.errorNotifier = { [unowned self] error in
             switch error {
             case .unauthorized:
                 self.showAlert(title: "Permission Required", message: "You have disallowed bluetooth usage. To enable chat functionality, go to Settings and allow Bluetooth usage.")
