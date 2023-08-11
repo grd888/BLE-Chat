@@ -97,11 +97,10 @@
 		5D4FFBB82A861D8E00D04E9A /* BLEChat */ = {
 			isa = PBXGroup;
 			children = (
+				5D4FFBE92A86277D00D04E9A /* Resources */,
 				5D4FFBB92A861D8E00D04E9A /* AppDelegate.swift */,
 				5D4FFBBB2A861D8E00D04E9A /* SceneDelegate.swift */,
 				5D4FFBBD2A861D8E00D04E9A /* HomeViewController.swift */,
-				5D4FFBC22A861D9100D04E9A /* Assets.xcassets */,
-				5D4FFBC42A861D9100D04E9A /* LaunchScreen.storyboard */,
 				5D4FFBC72A861D9100D04E9A /* Info.plist */,
 			);
 			path = BLEChat;
@@ -122,6 +121,15 @@
 				5D4FFBDC2A861D9100D04E9A /* BLEChatUITestsLaunchTests.swift */,
 			);
 			path = BLEChatUITests;
+			sourceTree = "<group>";
+		};
+		5D4FFBE92A86277D00D04E9A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5D4FFBC22A861D9100D04E9A /* Assets.xcassets */,
+				5D4FFBC42A861D9100D04E9A /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
