@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "BABAD360-1641-443F-ABFE-3BE511ED030E",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:BLEChat.xcodeproj",
+      "identifier" : "5D4FFBB52A861D8E00D04E9A",
+      "name" : "BLEChat"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:BLEChat.xcodeproj",
+        "identifier" : "5D4FFBCB2A861D9100D04E9A",
+        "name" : "BLEChatTests"
+      }
+    }
+  ],
+  "version" : 1
+}
