@@ -11,6 +11,8 @@ import OSLog
 
 protocol BluetoothServiceProtocol {
     var errorNotifier: ((BLEChatServiceError) -> Void)? { get set }
+    var deviceListUpdated: (([PeerDevice]) -> Void)? { get set }
+    
     func start()
     func setDeviceName(_ name: String)
 }
@@ -20,6 +22,8 @@ enum BLEChatServiceError: Error {
 class BluetoothService: NSObject, BluetoothServiceProtocol {
     
     var errorNotifier: ((BLEChatServiceError) -> Void)?
+    var deviceListUpdated: (([PeerDevice]) -> Void)?
+    
     var deviceName = "Gecko" {
         didSet {
             logger.info("Setting device name to \(self.deviceName)")
@@ -33,6 +37,9 @@ class BluetoothService: NSObject, BluetoothServiceProtocol {
     private var peripheralManager: CBPeripheralManager?
     private var centralCharacteristic: CBCharacteristic?
     private var peripheralCharacteristic: CBMutableCharacteristic?
+    
+    private var deviceList = Set<PeerDevice>()
+    
     private var logger = Logger(subsystem: "org.gdelgado.blechat", category: "BluetoothService")
     private let queue = DispatchQueue(label: "org.gdelgado.blechat", qos: .background, attributes: .concurrent, autoreleaseFrequency: .workItem, target: nil)
     
@@ -51,8 +58,10 @@ class BluetoothService: NSObject, BluetoothServiceProtocol {
     }
     /// updates list of found peers
     private func updateDeviceList(with device: PeerDevice) {
-        logger.info("Peer name: \(device.name)")
-        logger.info("Found a device: \(device.peripheral.name ?? device.peripheral.identifier.description)")
+        if !deviceList.contains(device) {
+            deviceList.insert(device)
+            deviceListUpdated?(Array(deviceList))
+        }
     }
     
     private func startAdvertising() {
@@ -75,10 +84,12 @@ extension BluetoothService: CBCentralManagerDelegate {
             name = deviceName
         }
         
+        logger.info("Found a device name: \(peripheral.name ?? peripheral.identifier.description)")
+        logger.info("Peer name is: \(name)")
+                let device = PeerDevice(peripheral: peripheral, name: name)
         if let uuids = advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID] {
-            print(uuids[0].uuidString)
+            logger.debug("UUID: \(uuids.first?.uuidString ?? "no UUID")")
         }
-        let device = PeerDevice(peripheral: peripheral, name: name)
         DispatchQueue.main.async {
             self.updateDeviceList(with: device)
         }
@@ -107,7 +118,7 @@ extension BluetoothService: CBCentralManagerDelegate {
         centralManager.scanForPeripherals(withServices: [Constants.chatDiscoveryServiceID],
                                    options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
 
-        logger.info("Started scanning.")
+        logger.info("Started scanning for service with UUID: \(Constants.chatDiscoveryServiceID)")
     }
 }
 

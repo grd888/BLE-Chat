@@ -17,3 +17,5 @@ struct PeerDevice {
         self.name = name
     }
 }
+
+extension PeerDevice: Hashable {}
