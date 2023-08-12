@@ -9,13 +9,21 @@ import Foundation
 import CoreBluetooth
 import OSLog
 
-class BluetoothService: NSObject {
-    enum BLEChatServiceError: Error {
-        case unauthorized
-    }
+protocol BluetoothServiceProtocol {
+    var errorNotifier: ((BLEChatServiceError) -> Void)? { get set }
+    func setDeviceName(_ name: String)
+}
+enum BLEChatServiceError: Error {
+    case unauthorized
+}
+class BluetoothService: NSObject, BluetoothServiceProtocol {
+    
     var errorNotifier: ((BLEChatServiceError) -> Void)?
     var deviceName = "Gecko" {
-        didSet { startAdvertising() }
+        didSet {
+            os_log("Setting device name to \(self.deviceName)")
+            startAdvertising()
+        }
     }
     
     private var central: CBCentral?
@@ -34,16 +42,24 @@ class BluetoothService: NSObject {
         if let deviceName { self.deviceName = deviceName }
     }
     
+    func setDeviceName(_ name: String) {
+        self.deviceName = name
+    }
+    /// updates list of found peers
+    private func updateDeviceList(with device: PeerDevice) {
+        print("Peer name: \(device.name)")
+        os_log("Found a device: \(device.peripheral.name ?? device.peripheral.identifier.description)")
+    }
+    
     private func startAdvertising() {
         guard peripheralManager.state == .poweredOn else { return }
         if peripheralManager.isAdvertising {
             peripheralManager.stopAdvertising()
         }
-        peripheralManager.startAdvertising([
-            CBAdvertisementDataServiceUUIDsKey: Constants.chatDiscoveryServiceID,
-            CBAdvertisementDataLocalNameKey: deviceName
-        ])
-        os_log("Peripheral started advertising")
+        peripheralManager.startAdvertising(
+            [CBAdvertisementDataServiceUUIDsKey: [Constants.chatDiscoveryServiceID],
+             CBAdvertisementDataLocalNameKey: deviceName])
+        os_log("Peripheral started advertising using name \(self.deviceName)")
     }
 }
 
@@ -54,6 +70,13 @@ extension BluetoothService: CBCentralManagerDelegate {
             name = deviceName
         }
         
+        if let uuids = advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID] {
+            print(uuids[0].uuidString)
+        }
+        let device = PeerDevice(peripheral: peripheral, name: name)
+        DispatchQueue.main.async {
+            self.updateDeviceList(with: device)
+        }
     }
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
