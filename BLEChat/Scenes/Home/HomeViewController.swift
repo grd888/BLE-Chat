@@ -8,9 +8,9 @@
 import UIKit
 import OSLog
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, Alertable {
     private var viewModel: HomeViewModelProtocol
-    
+    private var logger = Logger(subsystem: "org.gdelgado.blechat", category: "HomeViewController")
     init(viewModel: HomeViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -28,7 +28,11 @@ class HomeViewController: UIViewController {
             DispatchQueue.main.async {
                 switch action {
                 case .gotoSettings(let actionTitle):
-                    self.showAlert(title: "Error", message: message,actionTitle: actionTitle, action: self.goToSettings)
+                    self.showAlert(title: "Error",
+                                   message: message,
+                                   cancelTitle: "Maybe later",
+                                   actionTitle: actionTitle,
+                                   action: self.goToSettings)
                 default:
                     self.showAlert(title: "Error", message: message)
                 }
@@ -36,21 +40,9 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func showAlert(title: String?,
-                   message: String?,
-                   actionTitle: String? = "OK",
-                   action: (() -> Void)? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: actionTitle, style: .default) { _ in
-            if let action { action() }
-        })
-        alert.addAction(UIAlertAction(title: "Not now", style: .cancel))
-        present(alert, animated: true)
-    }
-    
-    func goToSettings() {
-        if let appSettings = URL(string: UIApplication.openSettingsURLString) {
-            UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.startScanning()
+        logger.info("viewWillAppear: ask viewModel to start scanning")
     }
 }

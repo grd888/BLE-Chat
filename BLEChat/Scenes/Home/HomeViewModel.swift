@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import OSLog
 
 protocol HomeViewModelProtocol {
     var onErrorMessage: ((String, ActionType?) -> Void)? { set get }
     var deviceName: String { get set }
+    func startScanning()
     func numberOfContacts() -> Int
 }
 enum ActionType {
@@ -22,6 +24,7 @@ class HomeViewModel: HomeViewModelProtocol {
     private var contactList = [Contact]()
     var onErrorMessage: ((String, ActionType?) -> Void)?
     var deviceName = "iPhone"
+    private var logger = Logger(subsystem: "org.gdelgado.blechat", category: "HomeViewModel")
     
     init(bluetoothService: BluetoothServiceProtocol) {
         self.bluetoothService = bluetoothService
@@ -36,6 +39,10 @@ class HomeViewModel: HomeViewModelProtocol {
                 self.onErrorMessage?("You have disallowed bluetooth usage. To enable chat functionality, go to Settings and allow Bluetooth usage.", ActionType.gotoSettings("Go to Settings"))
             }
         }
+    }
+    
+    func startScanning() {
+        bluetoothService.start()
     }
     
     func numberOfContacts() -> Int {

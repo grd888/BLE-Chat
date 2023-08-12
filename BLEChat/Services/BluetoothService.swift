@@ -11,6 +11,7 @@ import OSLog
 
 protocol BluetoothServiceProtocol {
     var errorNotifier: ((BLEChatServiceError) -> Void)? { get set }
+    func start()
     func setDeviceName(_ name: String)
 }
 enum BLEChatServiceError: Error {
@@ -21,7 +22,7 @@ class BluetoothService: NSObject, BluetoothServiceProtocol {
     var errorNotifier: ((BLEChatServiceError) -> Void)?
     var deviceName = "Gecko" {
         didSet {
-            os_log("Setting device name to \(self.deviceName)")
+            logger.info("Setting device name to \(self.deviceName)")
             startAdvertising()
         }
     }
@@ -29,17 +30,20 @@ class BluetoothService: NSObject, BluetoothServiceProtocol {
     private var central: CBCentral?
     private var centralManager: CBCentralManager?
     private var peripheral: CBPeripheral?
-    private var peripheralManager: CBPeripheralManager!
+    private var peripheralManager: CBPeripheralManager?
     private var centralCharacteristic: CBCharacteristic?
     private var peripheralCharacteristic: CBMutableCharacteristic?
-    
+    private var logger = Logger(subsystem: "org.gdelgado.blechat", category: "BluetoothService")
     private let queue = DispatchQueue(label: "org.gdelgado.blechat", qos: .background, attributes: .concurrent, autoreleaseFrequency: .workItem, target: nil)
     
     init(deviceName: String? = nil) {
         super.init()
+        if let deviceName { self.deviceName = deviceName }
+    }
+    
+    func start() {
         centralManager = CBCentralManager(delegate: self, queue: queue)
         peripheralManager = CBPeripheralManager(delegate: self, queue: queue)
-        if let deviceName { self.deviceName = deviceName }
     }
     
     func setDeviceName(_ name: String) {
@@ -47,11 +51,12 @@ class BluetoothService: NSObject, BluetoothServiceProtocol {
     }
     /// updates list of found peers
     private func updateDeviceList(with device: PeerDevice) {
-        print("Peer name: \(device.name)")
-        os_log("Found a device: \(device.peripheral.name ?? device.peripheral.identifier.description)")
+        logger.info("Peer name: \(device.name)")
+        logger.info("Found a device: \(device.peripheral.name ?? device.peripheral.identifier.description)")
     }
     
     private func startAdvertising() {
+        guard let peripheralManager else { return }
         guard peripheralManager.state == .poweredOn else { return }
         if peripheralManager.isAdvertising {
             peripheralManager.stopAdvertising()
@@ -59,7 +64,7 @@ class BluetoothService: NSObject, BluetoothServiceProtocol {
         peripheralManager.startAdvertising(
             [CBAdvertisementDataServiceUUIDsKey: [Constants.chatDiscoveryServiceID],
              CBAdvertisementDataLocalNameKey: deviceName])
-        os_log("Peripheral started advertising using name \(self.deviceName)")
+        logger.info("Peripheral started advertising using name \(self.deviceName)")
     }
 }
 
@@ -102,7 +107,7 @@ extension BluetoothService: CBCentralManagerDelegate {
         centralManager.scanForPeripherals(withServices: [Constants.chatDiscoveryServiceID],
                                    options: [CBCentralManagerScanOptionAllowDuplicatesKey: false])
 
-        os_log("Started scanning.")
+        logger.info("Started scanning.")
     }
 }
 
