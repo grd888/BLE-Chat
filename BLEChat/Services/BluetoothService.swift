@@ -18,6 +18,7 @@ protocol BluetoothServiceProtocol {
 }
 enum BLEChatServiceError: Error {
     case unauthorized
+    case unsupported
 }
 class BluetoothService: NSObject, BluetoothServiceProtocol {
     
@@ -100,7 +101,7 @@ extension BluetoothService: CBCentralManagerDelegate {
         case .resetting, .poweredOff, .unknown:
             break
         case .unsupported:
-            assertionFailure("Show a message to the user that bluetooth is not supported")
+            errorNotifier?(.unsupported)
         case .unauthorized:
             errorNotifier?(.unauthorized)
         case .poweredOn:

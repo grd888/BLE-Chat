@@ -40,6 +40,8 @@ class HomeViewModel: HomeViewModelProtocol {
         bluetoothService.setDeviceName(deviceName)
         bluetoothService.errorNotifier = { [unowned self] error in
             switch error {
+            case .unsupported:
+                self.onErrorMessage?("Bluetooth is not supported on this device.", nil)
             case .unauthorized:
                 self.onErrorMessage?("You have disallowed bluetooth usage. To enable chat functionality, go to Settings and allow Bluetooth usage.", ActionType.gotoSettings("Go to Settings"))
             }

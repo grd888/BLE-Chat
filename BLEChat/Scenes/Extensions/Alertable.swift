@@ -19,14 +19,16 @@ protocol Alertable {
 extension Alertable where Self: UIViewController {
     func showAlert(title: String?,
                    message: String?,
-                   cancelTitle: String? = "Cancel",
+                   cancelTitle: String?,
                    actionTitle: String? = "OK",
                    action: (() -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: actionTitle, style: .default) { _ in
             if let action { action() }
         })
-        alert.addAction(UIAlertAction(title: cancelTitle, style: .cancel))
+        if cancelTitle != nil {
+            alert.addAction(UIAlertAction(title: cancelTitle, style: .cancel))
+        }
         present(alert, animated: true)
     }
     

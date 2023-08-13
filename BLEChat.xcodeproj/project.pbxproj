@@ -19,6 +19,9 @@
 		5D4FFBF72A87755E00D04E9A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFBF62A87755E00D04E9A /* HomeViewModel.swift */; };
 		5D4FFBF92A8775B200D04E9A /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFBF82A8775B200D04E9A /* Contact.swift */; };
 		5D4FFBFB2A878C7A00D04E9A /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFBFA2A878C7A00D04E9A /* Alertable.swift */; };
+		5D4FFC042A87B76200D04E9A /* PeerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFC032A87B76200D04E9A /* PeerCell.swift */; };
+		5D4FFC072A88560F00D04E9A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5D4FFC062A88560F00D04E9A /* SnapKit */; };
+		5D4FFC092A885D3100D04E9A /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFC082A885D3100D04E9A /* TextFieldCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,8 @@
 		5D4FFBF62A87755E00D04E9A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		5D4FFBF82A8775B200D04E9A /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		5D4FFBFA2A878C7A00D04E9A /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
+		5D4FFC032A87B76200D04E9A /* PeerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerCell.swift; sourceTree = "<group>"; };
+		5D4FFC082A885D3100D04E9A /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D4FFC072A88560F00D04E9A /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +162,7 @@
 		5D4FFBF52A87753600D04E9A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				5D4FFC022A87B73700D04E9A /* Cells */,
 				5D4FFBBD2A861D8E00D04E9A /* HomeViewController.swift */,
 				5D4FFBF62A87755E00D04E9A /* HomeViewModel.swift */,
 			);
@@ -168,6 +175,15 @@
 				5D4FFBFA2A878C7A00D04E9A /* Alertable.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5D4FFC022A87B73700D04E9A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5D4FFC032A87B76200D04E9A /* PeerCell.swift */,
+				5D4FFC082A885D3100D04E9A /* TextFieldCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,6 +202,9 @@
 			dependencies = (
 			);
 			name = BLEChat;
+			packageProductDependencies = (
+				5D4FFC062A88560F00D04E9A /* SnapKit */,
+			);
 			productName = BLEChat;
 			productReference = 5D4FFBB62A861D8E00D04E9A /* BLEChat.app */;
 			productType = "com.apple.product-type.application";
@@ -236,6 +255,9 @@
 				Base,
 			);
 			mainGroup = 5D4FFBAD2A861D8E00D04E9A;
+			packageReferences = (
+				5D4FFC052A88560F00D04E9A /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 5D4FFBB72A861D8E00D04E9A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -272,9 +294,11 @@
 			files = (
 				5D4FFBFB2A878C7A00D04E9A /* Alertable.swift in Sources */,
 				5D4FFBF02A866FFD00D04E9A /* Constants.swift in Sources */,
+				5D4FFC092A885D3100D04E9A /* TextFieldCell.swift in Sources */,
 				5D4FFBBE2A861D8E00D04E9A /* HomeViewController.swift in Sources */,
 				5D4FFBF72A87755E00D04E9A /* HomeViewModel.swift in Sources */,
 				5D4FFBBA2A861D8E00D04E9A /* AppDelegate.swift in Sources */,
+				5D4FFC042A87B76200D04E9A /* PeerCell.swift in Sources */,
 				5D4FFBF92A8775B200D04E9A /* Contact.swift in Sources */,
 				5D4FFBBC2A861D8E00D04E9A /* SceneDelegate.swift in Sources */,
 				5D4FFBEE2A862C7E00D04E9A /* BluetoothService.swift in Sources */,
@@ -553,6 +577,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5D4FFC052A88560F00D04E9A /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5D4FFC062A88560F00D04E9A /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D4FFC052A88560F00D04E9A /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5D4FFBAE2A861D8E00D04E9A /* Project object */;
 }
