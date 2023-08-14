@@ -8,6 +8,7 @@
 import Foundation
 
 struct Contact {
+    var id: UUID
     var name: String
     var device: String
 }

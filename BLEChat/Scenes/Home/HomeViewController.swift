@@ -45,6 +45,9 @@ class HomeViewController: UIViewController, Alertable {
                 }
             }
         }
+        viewModel.onDeviceUpdate = { [unowned self] in
+            self.tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -79,7 +82,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         if section == Section.name {
             return 1
         } else {
-            return 3
+            return viewModel.numberOfContacts()
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -89,7 +92,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
                 return UITableViewCell()
             }
             cell.textFieldChangedHandler = { name in
-                print("Name updated to \(name)")
+                self.viewModel.deviceName = name
             }
             return cell
         } else {
@@ -97,6 +100,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
                 assertionFailure("Could not dequeue PeerCell")
                 return UITableViewCell()
             }
+            let contact = viewModel.contact(at: indexPath.row)
+            cell.configure(with: contact)
             return cell
         }
     }

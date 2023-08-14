@@ -22,6 +22,7 @@
 		5D4FFC042A87B76200D04E9A /* PeerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFC032A87B76200D04E9A /* PeerCell.swift */; };
 		5D4FFC072A88560F00D04E9A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5D4FFC062A88560F00D04E9A /* SnapKit */; };
 		5D4FFC092A885D3100D04E9A /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFC082A885D3100D04E9A /* TextFieldCell.swift */; };
+		5D4FFC0C2A89D74200D04E9A /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5D4FFC0B2A89D74200D04E9A /* MessageKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D4FFC072A88560F00D04E9A /* SnapKit in Frameworks */,
+				5D4FFC0C2A89D74200D04E9A /* MessageKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +206,7 @@
 			name = BLEChat;
 			packageProductDependencies = (
 				5D4FFC062A88560F00D04E9A /* SnapKit */,
+				5D4FFC0B2A89D74200D04E9A /* MessageKit */,
 			);
 			productName = BLEChat;
 			productReference = 5D4FFBB62A861D8E00D04E9A /* BLEChat.app */;
@@ -257,6 +260,7 @@
 			mainGroup = 5D4FFBAD2A861D8E00D04E9A;
 			packageReferences = (
 				5D4FFC052A88560F00D04E9A /* XCRemoteSwiftPackageReference "SnapKit" */,
+				5D4FFC0A2A89D74200D04E9A /* XCRemoteSwiftPackageReference "MessageKit" */,
 			);
 			productRefGroup = 5D4FFBB72A861D8E00D04E9A /* Products */;
 			projectDirPath = "";
@@ -587,6 +591,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		5D4FFC0A2A89D74200D04E9A /* XCRemoteSwiftPackageReference "MessageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MessageKit/MessageKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -594,6 +606,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5D4FFC052A88560F00D04E9A /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		5D4FFC0B2A89D74200D04E9A /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5D4FFC0A2A89D74200D04E9A /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

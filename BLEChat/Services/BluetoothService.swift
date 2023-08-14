@@ -39,7 +39,7 @@ class BluetoothService: NSObject, BluetoothServiceProtocol {
     private var centralCharacteristic: CBCharacteristic?
     private var peripheralCharacteristic: CBMutableCharacteristic?
     
-    private var deviceList = Set<PeerDevice>()
+    private var deviceList = [PeerDevice]()
     
     private var logger = Logger(subsystem: "org.gdelgado.blechat", category: "BluetoothService")
     private let queue = DispatchQueue(label: "org.gdelgado.blechat", qos: .background, attributes: .concurrent, autoreleaseFrequency: .workItem, target: nil)
@@ -59,10 +59,16 @@ class BluetoothService: NSObject, BluetoothServiceProtocol {
     }
     /// updates list of found peers
     private func updateDeviceList(with device: PeerDevice) {
-        if !deviceList.contains(device) {
-            deviceList.insert(device)
-            deviceListUpdated?(Array(deviceList))
+        if let index = deviceList.firstIndex(where: {$0.peripheral.identifier == device.peripheral.identifier}) {
+            deviceList[index] = device
+        } else {
+            deviceList.append(device)
         }
+        deviceListUpdated?(deviceList)
+//        if !deviceList.contains(device) {
+//            deviceList.insert(device)
+//            deviceListUpdated?(Array(deviceList))
+//        } else if deviceList.co
     }
     
     private func startAdvertising() {
@@ -87,6 +93,7 @@ extension BluetoothService: CBCentralManagerDelegate {
         
         logger.info("Found a device name: \(peripheral.name ?? peripheral.identifier.description)")
         logger.info("Peer name is: \(name)")
+        logger.info("Device ID: \(peripheral.identifier.description)")
                 let device = PeerDevice(peripheral: peripheral, name: name)
         if let uuids = advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID] {
             logger.debug("UUID: \(uuids.first?.uuidString ?? "no UUID")")

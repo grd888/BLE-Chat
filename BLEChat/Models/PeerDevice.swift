@@ -18,4 +18,13 @@ struct PeerDevice {
     }
 }
 
-extension PeerDevice: Hashable {}
+extension PeerDevice: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.peripheral.identifier == rhs.peripheral.identifier
+    }
+}
+extension PeerDevice: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(peripheral.identifier)
+    }
+}

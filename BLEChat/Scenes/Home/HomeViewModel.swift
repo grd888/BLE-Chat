@@ -9,19 +9,25 @@ import Foundation
 import OSLog
 
 protocol HomeViewModelProtocol {
+    var onDeviceUpdate: (() -> Void)? { set get }
     var onErrorMessage: ((String, ActionType?) -> Void)? { set get }
-    var deviceName: String { get set }
+    var deviceName: String { set get }
     func startScanning()
     func numberOfContacts() -> Int
+    func contact(at index: Int) -> ContactViewModel
 }
 enum ActionType {
     case gotoSettings(String)
 }
 
 class HomeViewModel: HomeViewModelProtocol {
-
+    var onDeviceUpdate: (() -> Void)?
     var onErrorMessage: ((String, ActionType?) -> Void)?
-    var deviceName = "iPhone"
+    var deviceName = "iPhone" {
+        didSet {
+            bluetoothService.setDeviceName(deviceName)
+        }
+    }
     
     private var bluetoothService: BluetoothServiceProtocol!
     private var contactList = [Contact]() {
@@ -47,7 +53,10 @@ class HomeViewModel: HomeViewModelProtocol {
             }
         }
         bluetoothService.deviceListUpdated = { [unowned self] devices in
-            self.contactList = devices.map{ Contact(name: $0.name, device: $0.peripheral.name ?? $0.peripheral.description)}
+            self.contactList = devices.map{ Contact(id: $0.peripheral.identifier,
+                                                    name: $0.name,
+                                                    device: $0.peripheral.name ?? $0.peripheral.description)}
+            self.onDeviceUpdate?()
         }
     }
     
@@ -57,5 +66,24 @@ class HomeViewModel: HomeViewModelProtocol {
     
     func numberOfContacts() -> Int {
         return contactList.count
+    }
+    
+    func contact(at index: Int) -> ContactViewModel {
+        let contact = contactList[index]
+        return ContactViewModel(contact: contact)
+    }
+}
+
+struct ContactViewModel {
+    var name: String {
+        return contact.name
+    }
+    var device: String {
+        return contact.device
+    }
+    private var contact: Contact
+    
+    init(contact: Contact) {
+        self.contact = contact
     }
 }

@@ -35,5 +35,10 @@ class PeerCell: UITableViewCell {
         nameLabel.text = "Name"
         deviceLabel.text = "Device"
     }
+    
+    func configure(with viewModel: ContactViewModel) {
+        nameLabel.text = viewModel.name
+        deviceLabel.text = viewModel.device
+    }
 
 }
