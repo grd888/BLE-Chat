@@ -16,6 +16,11 @@ protocol BluetoothServiceProtocol {
     func start()
     func setDeviceName(_ name: String)
 }
+
+protocol ChatServiceProtocol {
+    var messageReceivedHandler: ((String) -> Void)? { get set }
+    func send(message: String)
+}
 enum BLEChatServiceError: Error {
     case unauthorized
     case unsupported

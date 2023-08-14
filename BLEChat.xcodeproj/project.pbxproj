@@ -23,6 +23,11 @@
 		5D4FFC072A88560F00D04E9A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5D4FFC062A88560F00D04E9A /* SnapKit */; };
 		5D4FFC092A885D3100D04E9A /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFC082A885D3100D04E9A /* TextFieldCell.swift */; };
 		5D4FFC0C2A89D74200D04E9A /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5D4FFC0B2A89D74200D04E9A /* MessageKit */; };
+		5D4FFC102A89DA4600D04E9A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFC0F2A89DA4600D04E9A /* ChatViewController.swift */; };
+		5D4FFC122A89DAC100D04E9A /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFC112A89DAC100D04E9A /* ChatViewModel.swift */; };
+		5D4FFC142A89E93B00D04E9A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFC132A89E93B00D04E9A /* Message.swift */; };
+		5D4FFC162A89EA8200D04E9A /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFC152A89EA8200D04E9A /* Sender.swift */; };
+		5D4FFC182A89F81700D04E9A /* BlueToothChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFC172A89F81700D04E9A /* BlueToothChatService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +59,11 @@
 		5D4FFBFA2A878C7A00D04E9A /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		5D4FFC032A87B76200D04E9A /* PeerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerCell.swift; sourceTree = "<group>"; };
 		5D4FFC082A885D3100D04E9A /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
+		5D4FFC0F2A89DA4600D04E9A /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		5D4FFC112A89DAC100D04E9A /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		5D4FFC132A89E93B00D04E9A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		5D4FFC152A89EA8200D04E9A /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
+		5D4FFC172A89F81700D04E9A /* BlueToothChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueToothChatService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				5D4FFBED2A862C7E00D04E9A /* BluetoothService.swift */,
+				5D4FFC172A89F81700D04E9A /* BlueToothChatService.swift */,
 				5D4FFBEF2A866FFD00D04E9A /* Constants.swift */,
 			);
 			path = Services;
@@ -155,6 +166,7 @@
 		5D4FFBF42A87753100D04E9A /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				5D4FFC0D2A89DA1A00D04E9A /* Chat */,
 				5D4FFBFC2A878FDC00D04E9A /* Extensions */,
 				5D4FFBF52A87753600D04E9A /* Home */,
 			);
@@ -186,6 +198,25 @@
 				5D4FFC082A885D3100D04E9A /* TextFieldCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		5D4FFC0D2A89DA1A00D04E9A /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				5D4FFC0E2A89DA2200D04E9A /* Models */,
+				5D4FFC0F2A89DA4600D04E9A /* ChatViewController.swift */,
+				5D4FFC112A89DAC100D04E9A /* ChatViewModel.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		5D4FFC0E2A89DA2200D04E9A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5D4FFC132A89E93B00D04E9A /* Message.swift */,
+				5D4FFC152A89EA8200D04E9A /* Sender.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,13 +331,18 @@
 				5D4FFBF02A866FFD00D04E9A /* Constants.swift in Sources */,
 				5D4FFC092A885D3100D04E9A /* TextFieldCell.swift in Sources */,
 				5D4FFBBE2A861D8E00D04E9A /* HomeViewController.swift in Sources */,
+				5D4FFC162A89EA8200D04E9A /* Sender.swift in Sources */,
 				5D4FFBF72A87755E00D04E9A /* HomeViewModel.swift in Sources */,
 				5D4FFBBA2A861D8E00D04E9A /* AppDelegate.swift in Sources */,
 				5D4FFC042A87B76200D04E9A /* PeerCell.swift in Sources */,
 				5D4FFBF92A8775B200D04E9A /* Contact.swift in Sources */,
+				5D4FFC122A89DAC100D04E9A /* ChatViewModel.swift in Sources */,
 				5D4FFBBC2A861D8E00D04E9A /* SceneDelegate.swift in Sources */,
 				5D4FFBEE2A862C7E00D04E9A /* BluetoothService.swift in Sources */,
+				5D4FFC182A89F81700D04E9A /* BlueToothChatService.swift in Sources */,
+				5D4FFC102A89DA4600D04E9A /* ChatViewController.swift in Sources */,
 				5D4FFBF32A8748B600D04E9A /* PeerDevice.swift in Sources */,
+				5D4FFC142A89E93B00D04E9A /* Message.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
