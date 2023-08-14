@@ -28,6 +28,7 @@
 		5D4FFC142A89E93B00D04E9A /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFC132A89E93B00D04E9A /* Message.swift */; };
 		5D4FFC162A89EA8200D04E9A /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFC152A89EA8200D04E9A /* Sender.swift */; };
 		5D4FFC182A89F81700D04E9A /* BlueToothChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFC172A89F81700D04E9A /* BlueToothChatService.swift */; };
+		5D4FFC1A2A8A1D5900D04E9A /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FFC192A8A1D5900D04E9A /* ChatService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		5D4FFC132A89E93B00D04E9A /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		5D4FFC152A89EA8200D04E9A /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
 		5D4FFC172A89F81700D04E9A /* BlueToothChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueToothChatService.swift; sourceTree = "<group>"; };
+		5D4FFC192A8A1D5900D04E9A /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 			children = (
 				5D4FFBED2A862C7E00D04E9A /* BluetoothService.swift */,
 				5D4FFC172A89F81700D04E9A /* BlueToothChatService.swift */,
+				5D4FFC192A8A1D5900D04E9A /* ChatService.swift */,
 				5D4FFBEF2A866FFD00D04E9A /* Constants.swift */,
 			);
 			path = Services;
@@ -334,6 +337,7 @@
 				5D4FFC162A89EA8200D04E9A /* Sender.swift in Sources */,
 				5D4FFBF72A87755E00D04E9A /* HomeViewModel.swift in Sources */,
 				5D4FFBBA2A861D8E00D04E9A /* AppDelegate.swift in Sources */,
+				5D4FFC1A2A8A1D5900D04E9A /* ChatService.swift in Sources */,
 				5D4FFC042A87B76200D04E9A /* PeerCell.swift in Sources */,
 				5D4FFBF92A8775B200D04E9A /* Contact.swift in Sources */,
 				5D4FFC122A89DAC100D04E9A /* ChatViewModel.swift in Sources */,

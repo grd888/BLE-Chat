@@ -101,7 +101,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
                 return UITableViewCell()
             }
             let contact = viewModel.contact(at: indexPath.row)
-            cell.configure(with: contact)
+            cell.configure(with: ContactViewModel(contact: contact))
             return cell
         }
     }
@@ -112,5 +112,16 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             return "Available peers"
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard indexPath.section == Section.devices, viewModel.numberOfContacts() > 0 else {
+            return
+        }
+        let contact = viewModel.contact(at: indexPath.row)
+        let chatVM = ChatViewModel(contact: contact, service: BluetoothChatService(deviceIdentifier: contact.id))
+        let chatVC = ChatViewController(viewModel: chatVM, contact: contact, currentDeviceName: contact.name)
+        navigationController?.pushViewController(chatVC, animated: true)
     }
 }

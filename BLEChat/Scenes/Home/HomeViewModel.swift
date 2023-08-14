@@ -14,7 +14,7 @@ protocol HomeViewModelProtocol {
     var deviceName: String { set get }
     func startScanning()
     func numberOfContacts() -> Int
-    func contact(at index: Int) -> ContactViewModel
+    func contact(at index: Int) -> Contact
 }
 enum ActionType {
     case gotoSettings(String)
@@ -68,9 +68,8 @@ class HomeViewModel: HomeViewModelProtocol {
         return contactList.count
     }
     
-    func contact(at index: Int) -> ContactViewModel {
-        let contact = contactList[index]
-        return ContactViewModel(contact: contact)
+    func contact(at index: Int) -> Contact {
+        return contactList[index]
     }
 }
 
@@ -80,6 +79,9 @@ struct ContactViewModel {
     }
     var device: String {
         return contact.device
+    }
+    var id: UUID {
+        return contact.id
     }
     private var contact: Contact
     

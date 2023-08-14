@@ -15,12 +15,12 @@ enum BluetoothChatState {
     case chattingAsPeripheral   // Connected and chatting as a peripheral
 }
 
-class BluetoothChatService: NSObject, ChatServiceProtocol {
+class BluetoothChatService: NSObject, ChatService {
     
     
     var messageReceivedHandler: ((String) -> Void)?
     
-    private var device: PeerDevice
+    private var deviceIdentifier: UUID
     
     private var state = BluetoothChatState.scanning
 
@@ -34,9 +34,9 @@ class BluetoothChatService: NSObject, ChatServiceProtocol {
 
     private var pendingMessageData: Data?
     
-    init(device: PeerDevice) {
+    init(deviceIdentifier: UUID) {
         // Save the device
-        self.device = device
+        self.deviceIdentifier = deviceIdentifier
         super.init()
         // Start the central, scanning immediately
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
@@ -93,7 +93,7 @@ extension BluetoothChatService: CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        guard peripheral.identifier == device.peripheral.identifier else { return }
+        guard peripheral.identifier == deviceIdentifier else { return }
         centralManager?.connect(peripheral, options: nil)
         self.peripheral = peripheral
 
